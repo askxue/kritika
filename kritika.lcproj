@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<lcproj projname="kritika" is_acc_mode="0" appname="auto" pkgname="com.xue65535.kritika" autorotate="false" rgbmode="false" localmode="true" targetsize="720x1280">
+    <lua entry="kritika.lua"/>
+    <ui entry="kritika.ui"/>
+    <rc entry="kritika.rc"/>
+    <luae>
+        <file name="x86"/>
+        <file name="armeabi-v7a"/>
+    </luae>
+</lcproj>
