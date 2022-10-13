@@ -1,7 +1,7 @@
 -- 脚本主入口
 
 -- 引用其他模块，并且起一个别名方便调用
-local ui = require "ui"
+local ui = require "lib.ui"
 
 -- 调用其他模块中的方法
 

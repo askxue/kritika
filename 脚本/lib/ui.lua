@@ -10,12 +10,12 @@ function ui.isHome()
     print("我是公有函数，可以从模块外部调用")
 end
 
-function ui.test2()
-    test()
-end
-
 local function test()
     print("我是私有函数，不能从模块外部调用")
+end
+
+function ui.test2()
+    test()
 end
 
 return ui
