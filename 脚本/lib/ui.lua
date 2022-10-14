@@ -1,21 +1,23 @@
 -- 各种UI相关的判断
 
--- 定义一个名为ui的模块
+local common = require "lib.common"
+
 ui = {}
 
-ui.name = "我是常量"
+-- 角色选择界面
+ui.chooseRole = "choose_role"
+ui.homePage = "home_page"
 
--- 公有函数
-function ui.isHome()
-    print("我是公有函数，可以从模块外部调用")
+
+
+-- 是否为角色主界面
+function ui.isHomePage()
+    return common.findImage(ui.homePage)
 end
 
-local function test()
-    print("我是私有函数，不能从模块外部调用")
-end
-
-function ui.test2()
-    test()
+-- 是否为角色选择界面
+function ui.isChooseRolePage()
+    return common.findImage(ui.chooseRole)
 end
 
 return ui
