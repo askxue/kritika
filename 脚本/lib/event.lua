@@ -1,6 +1,8 @@
 -- 各种事件
 
 local common = require "lib.common"
+local enum = require "lib.enum"
+local ui = require "lib.ui"
 
 event = {}
 
@@ -32,19 +34,30 @@ end
 
 -- 切换角色
 function event.changeRole(role)
-    local x = -1
-    y = -1
     local rolePng = role .. ".png" .. "|" .. role .. "_1.png"
-    ret, x, y = findPicEx(0, 0, 0, 0, rolePng, 0.9)
-    if x ~= -1 and y ~= -1 then
-        tap(x, y)
-        sleep(1000)
-        tap(62, 957)
-    else
+    while not common.findImage(rolePng) do
         -- 滑动角色列表
         slideRoleList()
+    end
+    common.tapImage(rolePng)
+    sleep(2000)
+    tap(enum.chooseRole.x, enum.chooseRole.y)
+    sleep(2000)
+    if not ui.isHomePage() then
         event.changeRole(role)
     end
+end
+
+-- 收取邮件
+function event.getEmail()
+    sleep(3000)
+    tap(enum.email.x, enum.email.y)
+    sleep(2000)
+    tap(enum.personalEmail.x, enum.personalEmail.y)
+    sleep(2000)
+    tap(enum.fewDaysEmail.x, enum.fewDaysEmail.y)
+    sleep(3000)
+    tap(enum.closeEmail.x, enum.closeEmail.y)
 end
 
 return event
