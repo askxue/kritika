@@ -5,6 +5,7 @@
         <file name="lib\event.lua"/>
         <file name="lib\common.lua"/>
         <file name="lib\enum.lua"/>
+        <file name="lib\util.lua"/>
     </lua>
     <rc entry="kritika.rc"/>
     <ui entry="kritika.ui"/>

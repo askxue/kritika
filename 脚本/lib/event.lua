@@ -34,7 +34,8 @@ end
 function event.changeRole(role)
     local x = -1
     y = -1
-    ret, x, y = findPicEx(0, 0, 0, 0, role .. ".png", 0.9)
+    local rolePng = role .. ".png" .. "|" .. role .. "_1.png"
+    ret, x, y = findPicEx(0, 0, 0, 0, rolePng, 0.9)
     if x ~= -1 and y ~= -1 then
         tap(x, y)
         sleep(1000)

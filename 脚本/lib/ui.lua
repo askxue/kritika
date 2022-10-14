@@ -5,8 +5,8 @@ local common = require "lib.common"
 ui = {}
 
 -- 角色选择界面
-ui.chooseRole = "choose_role"
-ui.homePage = "home_page"
+ui.chooseRole = "choose_role.png"
+ui.homePage = "home_page.png"
 
 
 

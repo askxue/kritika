@@ -14,6 +14,7 @@ if ui.isChooseRolePage() then
     roleNum = 1
     event.changeRole(enum.roles[roleNum])
     common.await(ui.isHomePage)
+    toast("进入主界面")
 
 
 else
