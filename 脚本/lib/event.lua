@@ -49,11 +49,9 @@ function event.changeRole(role)
     countSlideTimes = 0
     common.tapImage(rolePng)
     sleep(2000)
+    print("点击选择角色")
     tap(enum.chooseRole.x, enum.chooseRole.y)
     sleep(3000)
-    if not ui.isHomePage() then
-        event.changeRole(role)
-    end
 end
 
 -- 收取邮件

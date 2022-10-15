@@ -4,12 +4,11 @@ common = {}
 
 
 --  «∑Ò’“µΩ¡Àƒ≥Õº
-function common.findImage(imageName, ...)
+function common.findImage(imageName)
     local x = -1
     y = -1
-    local images = imageName .. "|" .. table.concat({ ... }, "|")
-    print("’“Õº∆¨£∫" .. images)
-    ret, x, y = findPicEx(0, 0, 0, 0, images, 0.9)
+    print("’“Õº∆¨£∫" .. imageName)
+    ret, x, y = findPicEx(0, 0, 0, 0, imageName, 0.9)
     return x ~= -1 and y ~= -1
 end
 

@@ -22,6 +22,7 @@ if ui.isChooseRolePage() then
 
         -- 等待进入主界面
         common.await(ui.isHomePage)
+        print("成功进入主界面")
         toast("成功进入主界面")
 
         -- 1. 收邮件
