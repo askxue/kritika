@@ -6,8 +6,10 @@ local enum = require "lib.enum"
 ui = {}
 
 -- 角色选择界面
-ui.chooseRole = "choose_role.png"
-ui.homePage = "home_page.png"
+ui.chooseRole = "选择角色.png"
+ui.createRole = "创建角色.png"
+ui.homePage = "背包.png"
+
 
 
 

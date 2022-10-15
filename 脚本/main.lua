@@ -14,7 +14,7 @@ roleNum = #enum.roles
 
 -- 脚本必须从角色选择界面开始
 if ui.isChooseRolePage() then
-    toast("进入角色选择界面")
+    toast("欢迎你，主人！让我来为你服务吧！^_^")
     while true do
         -- 切换角色，进入主界面
         event.changeRole(enum.roles[roleIndex])
@@ -22,6 +22,7 @@ if ui.isChooseRolePage() then
 
         -- 等待进入主界面
         common.await(ui.isHomePage)
+        toast("成功进入主界面")
 
         -- 1. 收邮件
         event.getEmail()
@@ -30,6 +31,7 @@ if ui.isChooseRolePage() then
         -- 2. 黑市
 
         -- 返回角色选择界面
+        toast("返回角色选择界面")
         ui.backToRolePage()
         common.await(ui.isChooseRolePage)
         -- 修改角色索引
