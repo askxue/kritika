@@ -6,11 +6,14 @@
         <file name="lib\common.lua"/>
         <file name="lib\enum.lua"/>
         <file name="lib\util.lua"/>
+        <file name="lib\db.lua"/>
+        <file name="lib\service.lua"/>
+        <file name="lib\config.lua"/>
     </lua>
     <rc entry="kritika.rc"/>
     <ui entry="kritika.ui"/>
     <luae entry="">
-        <file name="armeabi-v7a"/>
         <file name="x86"/>
+        <file name="armeabi-v7a"/>
     </luae>
 </lcproj>

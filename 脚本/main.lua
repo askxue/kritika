@@ -5,12 +5,16 @@ local ui = require "lib.ui"
 local event = require "lib.event"
 local common = require "lib.common"
 local enum = require "lib.enum"
+local db = require "lib.db"
 
 -- 一些全局变量
 -- 当前角色索引
 roleIndex = 1
 -- 总共有多少个角色
 roleNum = #enum.roles
+
+-- 一些初始化工作
+db.init()
 
 -- 脚本必须从角色选择界面开始
 if ui.isChooseRolePage() then
@@ -28,8 +32,8 @@ if ui.isChooseRolePage() then
         -- 1. 收邮件
         event.getEmail()
 
-
         -- 2. 黑市
+
 
         -- 返回角色选择界面
         toast("返回角色选择界面")
