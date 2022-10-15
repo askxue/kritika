@@ -36,7 +36,7 @@ end
 
 
 -- 切换角色
-function event.changeRole(role)
+event.changeRole = function(role)
     toast("准备切换到 " .. role)
     local rolePng = role .. ".png" .. "|" .. role .. "_1.png"
     while not common.findImage(rolePng) do
@@ -55,7 +55,7 @@ function event.changeRole(role)
 end
 
 -- 收取邮件
-function event.getEmail()
+event.getEmail = function()
     toast("开始收取邮件")
     sleep(3000)
     tap(enum.email.x, enum.email.y)

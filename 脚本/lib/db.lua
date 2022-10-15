@@ -3,6 +3,7 @@ local config = require "lib.config"
 
 db = {}
 
+-- 初始化数据源连接
 db.init = function()
     local handle, err = mysql_connect(config.db.host, config.db.port, config.db.database, config.db.username, config.db.password)
     if handle ~= nil then
@@ -13,6 +14,10 @@ db.init = function()
         print(string.format("连接失败，错误原因 %s", err))
         exitScript()
     end
+end
+
+db.insert = function()
+
 end
 
 return db

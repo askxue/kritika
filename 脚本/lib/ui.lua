@@ -14,17 +14,17 @@ ui.homePage = "背包.png|副本模式.png"
 
 
 -- 是否为角色主界面
-function ui.isHomePage()
+ui.isHomePage = function()
     return common.findImage(ui.homePage)
 end
 
 -- 是否为角色选择界面
-function ui.isChooseRolePage()
+ui.isChooseRolePage = function()
     return common.findImage(ui.chooseRole)
 end
 
 -- 返回选择角色界面
-function ui.backToRolePage()
+ui.backToRolePage = function()
     sleep(2000)
     if ui.isHomePage() then
         tap(enum.setting.x, enum.setting.y)
