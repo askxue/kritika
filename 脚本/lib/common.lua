@@ -5,18 +5,27 @@ common = {}
 
 --  «∑Ò’“µΩ¡Àƒ≥Õº
 common.findImage = function(imageName)
-    local x = -1
-    y = -1
-    print("’“Õº∆¨£∫" .. imageName)
-    ret, x, y = findPicEx(0, 0, 0, 0, imageName, 0.9)
+    print("’“Õº£∫" .. imageName)
+    return common.findImageScoped(0, 0, 0, 0, imageName)
+end
+
+-- ∑∂Œß’“Õº
+common.findImageScoped = function(startX, startY, endX, endY, imageName)
+    print(startX, startY, endX, endY, imageName)
+    local ret, x, y = findPic(startX, startY, endX, endY, imageName, "101010", 0, 0.9)
+    print("’“ÕºΩ·π˚£∫" .. ret, x, y)
     return x ~= -1 and y ~= -1
 end
 
+
 -- µ„ª˜ƒ≥∏ˆÕº
 common.tapImage = function(imageName)
-    local x = -1
-    y = -1
-    ret, x, y = findPicEx(0, 0, 0, 0, imageName, 0.9)
+    common.tapImageScope(0, 0, 0, 0, imageName)
+end
+
+-- ∑∂Œßµ„ª˜Õº∆¨
+common.tapImageScope = function(startX, startY, endX, endY, imageName)
+    local ret, x, y = findPic(startX, startY, endX, endY, imageName, "101010", 0, 0.9)
     if x ~= -1 and y ~= -1 then
         tap(x, y)
     end

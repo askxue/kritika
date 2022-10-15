@@ -9,6 +9,7 @@ ui = {}
 ui.chooseRole = "选择角色.png"
 ui.createRole = "创建角色.png"
 ui.homePage = "背包.png|副本模式.png"
+ui.marketPage = "黑市.png"
 
 
 
@@ -21,6 +22,11 @@ end
 -- 是否为角色选择界面
 ui.isChooseRolePage = function()
     return common.findImage(ui.chooseRole)
+end
+
+-- 是否为黑市界面
+ui.isMarket = function()
+    return common.findImage(ui.marketPage)
 end
 
 -- 返回选择角色界面

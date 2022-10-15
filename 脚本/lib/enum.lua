@@ -29,6 +29,22 @@ enum.roles = {
     "缔约者"
 }
 
+-- 各种道具
+enum.items = {
+    gold = "金币.png"
+}
+
+-- 各种文字 （暂时用图片来替代）
+enum.world = {
+    yes = "确定.png"
+}
+
+-- 黑市要买的物品
+enum.buyList = {
+    "疲劳值.png",
+    "宠物碎片.png"
+}
+
 -- 邮件箱坐标
 enum.email = { x = 674, y = 1150 }
 -- 个人邮件
@@ -51,5 +67,11 @@ enum.settingRole = { x = 518, y = 1237 }
 
 -- 条件最大超时时长 5s
 enum.timeout = 5
+
+-- 黑市
+enum.market = { x = 55, y = 206 }
+enum.marketBegin = { x = 35, y = 131 }
+enum.marketEnd = { x = 526, y = 1135 }
+enum.marketClose = { x = 630, y = 1147 }
 
 return enum

@@ -14,7 +14,9 @@ roleIndex = 1
 roleNum = #enum.roles
 
 -- 一些初始化工作
-db.init()
+-- TODO 有精力再去研究面向对象开发，先实现最基本的脱机版
+-- db.init()
+
 
 -- 脚本必须从角色选择界面开始
 if ui.isChooseRolePage() then
@@ -33,7 +35,7 @@ if ui.isChooseRolePage() then
         event.getEmail()
 
         -- 2. 黑市
-
+        event.market()
 
         -- 返回角色选择界面
         toast("返回角色选择界面")
