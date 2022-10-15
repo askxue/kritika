@@ -7,7 +7,26 @@ enum.roles = {
     "zhankuang",
     "chiyuling",
     "lina",
-    "kelaier"
+    "kelaier",
+    "quansha",
+    "jianmo",
+    "shikong",
+    "fengwuxing",
+    "huoxianfeng",
+    "moyingshi",
+    "lingyun",
+    "meiluocha",
+    "guijianji",
+    "shuangyuzhe",
+    "zizaitian",
+    "yulingzhe",
+    "tianlangxing",
+    "lang",
+    "yemotian",
+    "lierenxing",
+    "xueyaoji",
+    "fuwenzhe",
+    "diyuezhe"
 }
 
 -- ÓÊ¼þÏä×ø±ê

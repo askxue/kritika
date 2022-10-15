@@ -38,6 +38,7 @@ function event.changeRole(role)
     while not common.findImage(rolePng) do
         -- 滑动角色列表
         slideRoleList()
+        sleep(1000)
     end
     common.tapImage(rolePng)
     sleep(2000)
