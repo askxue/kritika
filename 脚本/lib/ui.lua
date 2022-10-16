@@ -16,17 +16,17 @@ ui.marketPage = "黑市.png"
 
 -- 是否为角色主界面
 ui.isHomePage = function()
-    return common.findImage(ui.homePage)
+    return common.isFindImage(ui.homePage)
 end
 
 -- 是否为角色选择界面
 ui.isChooseRolePage = function()
-    return common.findImage(ui.chooseRole)
+    return common.isFindImage(ui.chooseRole)
 end
 
 -- 是否为黑市界面
 ui.isMarket = function()
-    return common.findImage(ui.marketPage)
+    return common.isFindImage(ui.marketPage)
 end
 
 -- 返回选择角色界面

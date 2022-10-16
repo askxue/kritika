@@ -16,7 +16,7 @@ local function slideRoleList()
     local startY = 996
     local endX = slideDown and (487 + countSlideTimes * 10) or (273 - countSlideTimes * 5)
     local endY = 996
-    if common.findImage(ui.createRole) then
+    if common.isFindImage(ui.createRole) then
         -- 到底了，改变滑动方向
         slideDown = false
         countSlideTimes = 0
@@ -39,7 +39,7 @@ end
 event.changeRole = function(role)
     toast("准备切换到 " .. role)
     local rolePng = role .. ".png" .. "|" .. role .. "_1.png"
-    while not common.findImage(rolePng) do
+    while not common.isFindImage(rolePng) do
         print("没找到目标角色，继续滑动...")
         -- 滑动角色列表
         slideRoleList()
@@ -79,26 +79,30 @@ event.market = function()
     for i, item in ipairs(enum.buyList) do
         -- 是否有某个商品
         print("查看是否有 " .. item)
-        local ret, x, y = findPicEx(enum.marketBegin.x, enum.marketBegin.y, enum.marketEnd.x, enum.marketEnd.y, item, 0.9)
-        -- TODO 需要优化，同一类商品同时存在多个的情况，有些能用金币购买，有些不能。 所以这里找图应该是找到一个数组集合。然后逐个判断。
-        if x ~= -1 and y ~= -1 then
-            -- 判断是否为金币可购买
-            -- 范围偏移量
-            local startX = x - 25
-            local startY = y + 310
-            local endX = x + 32
-            local endY = y + 428
-            local canGoldBuy = common.findImageScoped(startX, startY, endX, endY, enum.items.gold)
-            if canGoldBuy then
-                -- 可以用金币购买
-                print("可以用金币购买")
-                common.tapImageScope(startX, startY, endX, endY, enum.items.gold)
-                sleep(2000)
-                print("确定购买")
-                common.tapImageScope(enum.marketBegin.x, enum.marketBegin.y, enum.marketEnd.x, enum.marketEnd.y, enum.world.yes)
-                sleep(2000)
-            else
-                print("可惜只能用钻石购买")
+        local xyz = common.findPicAllPointsScoped(enum.marketBegin.x, enum.marketBegin.y, enum.marketEnd.x, enum.marketEnd.y, item)
+        print("总共找到目标物品数量：" .. #xyz)
+        if xyz ~= nil then
+            for n = 1, #xyz do
+                local x = xyz[n].x
+                local y = xyz[n].y
+                -- 判断是否为金币可购买
+                -- 范围偏移量
+                local startX = x - 25
+                local startY = y + 310
+                local endX = x + 32
+                local endY = y + 428
+                local canGoldBuy = common.isFindImageScoped(startX, startY, endX, endY, enum.items.gold)
+                if canGoldBuy then
+                    -- 可以用金币购买
+                    print("可以用金币购买")
+                    common.tapImageScope(startX, startY, endX, endY, enum.items.gold)
+                    sleep(2000)
+                    print("确定购买")
+                    common.tapImageScope(enum.marketBegin.x, enum.marketBegin.y, enum.marketEnd.x, enum.marketEnd.y, enum.world.yes)
+                    sleep(2000)
+                else
+                    print("可惜只能用钻石购买")
+                end
             end
         end
     end

@@ -3,7 +3,7 @@
 common = {}
 
 -- 找图： 普通 & 高级找图，双重校验
-local function findPicPlus(startX, startY, endX, endY, imageName)
+common.findPicPlus = function(startX, startY, endX, endY, imageName)
     local ret, x, y = findPic(startX, startY, endX, endY, imageName, "101010", 0, 0.9)
     if x == -1 and y == -1 then
         -- 没找到图，使用高级查找再次尝试
@@ -12,15 +12,26 @@ local function findPicPlus(startX, startY, endX, endY, imageName)
     return ret, x, y
 end
 
--- 是否找到了某图
-common.findImage = function(imageName)
-    return common.findImageScoped(0, 0, 0, 0, imageName)
+-- 找某张图的所有位置： 全屏
+common.findPicAllPoints = function(imageName)
+    return common.findPicAllPointsScoped(0, 0, 0, 0, imageName)
 end
 
--- 范围找图
-common.findImageScoped = function(startX, startY, endX, endY, imageName)
+-- 找某张图的所有位置： 指定范围
+common.findPicAllPointsScoped = function(startX, startY, endX, endY, imageName)
+    return findPicAllPoint(startX, startY, endX, endY, imageName, 0.9)
+end
+
+
+-- 是否找到了某图： 全屏
+common.isFindImage = function(imageName)
+    return common.isFindImageScoped(0, 0, 0, 0, imageName)
+end
+
+-- 是否找到了某图： 指定范围
+common.isFindImageScoped = function(startX, startY, endX, endY, imageName)
     print(startX, startY, endX, endY, imageName)
-    local ret, x, y = findPicPlus(startX, startY, endX, endY, imageName)
+    local ret, x, y = common.findPicPlus(startX, startY, endX, endY, imageName)
     print("找图[" .. imageName .. "]结果：" .. ret, x, y)
     return x ~= -1 and y ~= -1
 end
@@ -33,7 +44,7 @@ end
 
 -- 范围点击图片
 common.tapImageScope = function(startX, startY, endX, endY, imageName)
-    local ret, x, y = findPicPlus(startX, startY, endX, endY, imageName)
+    local ret, x, y = common.findPicPlus(startX, startY, endX, endY, imageName)
     if x ~= -1 and y ~= -1 then
         tap(x, y)
     end

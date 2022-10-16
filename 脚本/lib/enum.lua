@@ -43,7 +43,9 @@ enum.world = {
 -- 黑市要买的物品
 enum.buyList = {
     "疲劳值.png",
-    "宠物碎片.png"
+    "宠物碎片.png",
+    "魔晶.png",
+    "强化传承材料.png"
 }
 
 -- 邮件箱坐标
