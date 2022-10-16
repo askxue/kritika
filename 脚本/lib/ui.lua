@@ -8,7 +8,7 @@ ui = {}
 -- 角色选择界面
 ui.chooseRole = "选择角色.png"
 ui.createRole = "创建角色.png"
-ui.homePage = "背包.png|副本模式.png"
+ui.homePage = "背包.png|副本模式.png|商店.png"
 ui.marketPage = "黑市.png"
 
 

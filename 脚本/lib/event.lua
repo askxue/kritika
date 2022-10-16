@@ -43,7 +43,7 @@ event.changeRole = function(role)
         print("没找到目标角色，继续滑动...")
         -- 滑动角色列表
         slideRoleList()
-        sleep(1000)
+        sleep(500)
     end
     -- 找到角色了，重置滑动角色slider次数
     countSlideTimes = 0
@@ -51,7 +51,7 @@ event.changeRole = function(role)
     sleep(2000)
     print("点击选择角色")
     tap(enum.chooseRole.x, enum.chooseRole.y)
-    sleep(3000)
+    sleep(2000)
 end
 
 -- 收取邮件

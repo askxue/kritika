@@ -36,7 +36,8 @@ enum.items = {
 
 -- 各种文字 （暂时用图片来替代）
 enum.world = {
-    yes = "确定.png"
+    yes = "确定.png",
+    shop = "商店.png"
 }
 
 -- 黑市要买的物品
