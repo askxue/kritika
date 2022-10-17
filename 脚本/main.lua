@@ -6,24 +6,29 @@ local event = require "lib.event"
 local common = require "lib.common"
 local enum = require "lib.enum"
 local db = require "lib.db"
+local date = require "lib.date"
 
 -- 一些全局变量
 -- 当前角色索引
 roleIndex = 1
 -- 总共有多少个角色
 roleNum = #enum.roles
+-- 当前角色
+currentRole = nil
 
 -- 一些初始化工作
 -- TODO 有精力再去研究面向对象开发，先实现最基本的脱机版
 -- db.init()
 
+print("现在时间:" .. date.now())
 
 -- 脚本必须从角色选择界面开始
 if ui.isChooseRolePage() then
     toast("欢迎你，主人！让我来为你服务吧！^_^")
     while true do
         -- 切换角色，进入主界面
-        event.changeRole(enum.roles[roleIndex])
+        currentRole = enum.roles[roleIndex]
+        event.changeRole(currentRole)
         sleep(1000)
 
         -- 等待进入主界面
@@ -32,6 +37,7 @@ if ui.isChooseRolePage() then
         toast("成功进入主界面")
 
         -- 1. 收邮件
+
         event.getEmail()
 
         -- 2. 黑市

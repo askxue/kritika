@@ -20,4 +20,10 @@ db.insert = function()
 
 end
 
+
+-- 脱机版，先用全局变量临时存储数据。
+db.emails = {
+
+}
+
 return db
