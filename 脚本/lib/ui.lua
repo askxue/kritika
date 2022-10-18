@@ -15,13 +15,7 @@ ui.chooseRole = {
 }
 ui.createRole = "创建角色.png"
 ui.homePage = "背包.png|副本模式.png|商店.png"
-ui.marketPage = {
-    sX = 0,
-    sY = 0,
-    eX = 0,
-    eY = 0,
-    png = "黑市.png"
-}
+ui.marketPage = "黑市.png"
 -- 角色列表UI范围
 ui.roleList = {
     sX = 21,

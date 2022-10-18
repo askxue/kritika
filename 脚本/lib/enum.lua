@@ -55,6 +55,8 @@ enum.email = { x = 674, y = 1150 }
 enum.personalEmail = { x = 518, y = 448 }
 -- 3日内邮件
 enum.fewDaysEmail = { x = 464, y = 590 }
+-- 删除已确认过的邮件
+enum.deleteEmail = { x = 467, y = 298 }
 -- 关闭邮件箱
 enum.closeEmail = { x = 599, y = 1146 }
 

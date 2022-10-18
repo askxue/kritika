@@ -62,6 +62,8 @@ event.getEmail = function()
     tap(enum.personalEmail.x, enum.personalEmail.y)
     sleep(2000)
     tap(enum.fewDaysEmail.x, enum.fewDaysEmail.y)
+    sleep(1000)
+    tap(enum.deleteEmail.x, enum.deleteEmail.y)
     sleep(2000)
     tap(enum.closeEmail.x, enum.closeEmail.y)
     toast("关闭邮件箱")
@@ -107,11 +109,6 @@ event.market = function()
     -- 完事了，关闭黑市
     tap(enum.marketClose.x, enum.marketClose.y)
     toast("关闭了黑市")
-end
-
--- 关闭今日活动提示
-event.closeTips = function()
-    common.tapImage(enum.world.notTips)
 end
 
 return event

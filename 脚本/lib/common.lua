@@ -1,5 +1,5 @@
 -- 一些公共方法
-local event = require "lib.event"
+local enum = require "lib.enum"
 
 common = {}
 
@@ -58,10 +58,15 @@ common.await = function(condition)
         timer = timer + 1
         if timer > 3 then
             -- 进行检查，是否由于某些特殊原因，导致一直卡死在这了。
-            event.closeTips()
+            common.closeTips()
         end
     end
     return true
+end
+
+-- 关闭今日活动提示
+common.closeTips = function()
+    common.tapImage(enum.world.notTips)
 end
 
 return common
