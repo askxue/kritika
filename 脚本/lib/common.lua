@@ -1,4 +1,5 @@
 -- 一些公共方法
+local event = require "lib.event"
 
 common = {}
 
@@ -22,7 +23,6 @@ common.findPicAllPointsScoped = function(startX, startY, endX, endY, imageName)
     return findPicAllPoint(startX, startY, endX, endY, imageName, 0.9)
 end
 
-
 -- 是否找到了某图： 全屏
 common.isFindImage = function(imageName)
     return common.isFindImageScoped(0, 0, 0, 0, imageName)
@@ -35,7 +35,6 @@ common.isFindImageScoped = function(startX, startY, endX, endY, imageName)
     print("找图[" .. imageName .. "]结果：" .. ret, x, y)
     return x ~= -1 and y ~= -1
 end
-
 
 -- 点击某个图
 common.tapImage = function(imageName)
@@ -53,8 +52,14 @@ end
 -- 等待某条件成立
 -- condition = 某个条件，应该是一个函数
 common.await = function(condition)
+    local timer = 0;
     while not condition() do
         sleep(1000)
+        timer = timer + 1
+        if timer > 3 then
+            -- 进行检查，是否由于某些特殊原因，导致一直卡死在这了。
+            event.closeTips()
+        end
     end
     return true
 end

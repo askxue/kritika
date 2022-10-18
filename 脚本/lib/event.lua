@@ -6,7 +6,6 @@ local ui = require "lib.ui"
 
 event = {}
 
-
 -- 滑动角色列表
 local countSlideTimes = 0
 local slideDown = true
@@ -16,7 +15,7 @@ local function slideRoleList()
     local startY = 996
     local endX = slideDown and (487 + countSlideTimes * 10) or (273 - countSlideTimes * 5)
     local endY = 996
-    if common.isFindImage(ui.createRole) then
+    if ui.isEndOfRoleList() then
         -- 到底了，改变滑动方向
         slideDown = false
         countSlideTimes = 0
@@ -39,15 +38,14 @@ end
 event.changeRole = function(role)
     toast("准备切换到 " .. role)
     local rolePng = role .. ".png" .. "|" .. role .. "_1.png"
-    while not common.isFindImage(rolePng) do
+    while not ui.isFindRole(rolePng) do
         print("没找到目标角色，继续滑动...")
         -- 滑动角色列表
         slideRoleList()
-        sleep(500)
     end
     -- 找到角色了，重置滑动角色slider次数
     countSlideTimes = 0
-    common.tapImage(rolePng)
+    ui.tapRole(rolePng)
     sleep(2000)
     print("点击选择角色")
     tap(enum.chooseRole.x, enum.chooseRole.y)
@@ -64,7 +62,7 @@ event.getEmail = function()
     tap(enum.personalEmail.x, enum.personalEmail.y)
     sleep(2000)
     tap(enum.fewDaysEmail.x, enum.fewDaysEmail.y)
-    sleep(3000)
+    sleep(2000)
     tap(enum.closeEmail.x, enum.closeEmail.y)
     toast("关闭邮件箱")
 end
@@ -109,6 +107,11 @@ event.market = function()
     -- 完事了，关闭黑市
     tap(enum.marketClose.x, enum.marketClose.y)
     toast("关闭了黑市")
+end
+
+-- 关闭今日活动提示
+event.closeTips = function()
+    common.tapImage(enum.world.notTips)
 end
 
 return event
