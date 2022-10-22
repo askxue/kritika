@@ -9,7 +9,7 @@ util.delay = function(millisecond)
     if millisecond ~= nil then
         sleep(millisecond)
     else
-        sleep(config.delay)
+        sleep(tonumber(config.settings.delay))
     end
 end
 

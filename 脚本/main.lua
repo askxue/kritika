@@ -18,6 +18,9 @@ require "lib.util"
 
 -- end
 
+-- 从UI读取配置
+config.load()
+
 -- 一些全局变量
 -- 当前角色索引
 roleIndex = 1

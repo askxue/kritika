@@ -35,7 +35,6 @@ event.changeRole = function(role)
     toast("准备切换到 " .. role)
     local rolePng = role .. ".png" .. "|" .. role .. "_1.png"
     while not ui.isFindRole(rolePng) do
-        print("没找到目标角色，继续滑动...")
         -- 滑动角色列表
         slideRoleList()
     end
@@ -43,7 +42,6 @@ event.changeRole = function(role)
     countSlideTimes = 0
     ui.tapRole(rolePng)
     util.delay()
-    print("点击选择角色")
     tap(enum.chooseRole.x, enum.chooseRole.y)
     util.delay()
 end
@@ -73,12 +71,9 @@ event.market = function()
     util.delay()
     tap(enum.market.x, enum.market.y)
     common.await(ui.isMarket)
-    print("打开了黑市")
     for i, item in ipairs(enum.buyList) do
         -- 是否有某个商品
-        print("查看是否有 " .. item)
         local xyz = common.findPicAllPointsScoped(enum.marketBegin.x, enum.marketBegin.y, enum.marketEnd.x, enum.marketEnd.y, item)
-        print("总共找到目标物品数量：" .. #xyz)
         if xyz ~= nil then
             for n = 1, #xyz do
                 local x = xyz[n].x
@@ -92,14 +87,10 @@ event.market = function()
                 local canGoldBuy = common.isFindImageScoped(startX, startY, endX, endY, enum.items.gold)
                 if canGoldBuy then
                     -- 可以用金币购买
-                    print("可以用金币购买")
                     common.tapImageScope(startX, startY, endX, endY, enum.items.gold)
                     util.delay()
-                    print("确定购买")
                     common.tapImageScope(enum.marketBegin.x, enum.marketBegin.y, enum.marketEnd.x, enum.marketEnd.y, enum.world.yes)
                     util.delay()
-                else
-                    print("可惜只能用钻石购买")
                 end
             end
         end
@@ -120,10 +111,6 @@ event.boss = function()
     util.delay()
     tap(enum.pve.x, enum.pve.y)
     util.delay()
-    -- TODO 如果有领取奖励，则领取奖励
-
-    -- TODO 如果当天刷过boss了，则不刷了
-
     -- 刷世界boss
     tap(enum.boss.x, enum.boss.y)
     util.delay()
@@ -137,7 +124,7 @@ event.boss = function()
         toast('符石不足，不刷了')
         tap(ui.pveBossNoRune.cancel.x, ui.pveBossNoRune.cancel.y)
     else
-        util.delay(63 * 1000)
+        util.delay(65 * 1000)
         common.await(ui.isBossOver)
         tap(enum.continue.x, enum.continue.y)
         -- 记录log
@@ -184,6 +171,7 @@ end
 
 -- 公会签到
 event.sign = function()
+    toast('开始每日公会签到')
     util.delay()
     tap(enum.consortia.x, enum.consortia.y)
     util.delay()

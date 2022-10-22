@@ -71,16 +71,6 @@ ui.backToRolePage = function()
     end
 end
 
--- 返回主页
-ui.backToHomePage = function()
-    util.delay()
-    if not ui.isHomePage() then
-        tap(enum.roleProfile.x, enum.roleProfile.y)
-        util.delay()
-        tap(enum.hall.x, enum.hall.y)
-    end
-end
-
 -- 是否到达了角色列表末尾
 ui.isEndOfRoleList = function()
     return common.isFindImageScoped(ui.roleList.sX, ui.roleList.sY, ui.roleList.eX, ui.roleList.eY, ui.createRole)

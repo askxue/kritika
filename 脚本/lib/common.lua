@@ -29,9 +29,7 @@ end
 
 -- 是否找到了某图： 指定范围
 common.isFindImageScoped = function(startX, startY, endX, endY, imageName)
-    print(startX, startY, endX, endY, imageName)
     local ret, x, y = common.findPicPlus(startX, startY, endX, endY, imageName)
-    print("找图[" .. imageName .. "]结果：" .. ret, x, y)
     return x ~= -1 and y ~= -1
 end
 
