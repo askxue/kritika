@@ -33,7 +33,8 @@ enum.roles = {
 enum.events = {
     boss = "刷世界Boss",
     email = "收邮件",
-    market = "黑市"
+    market = "黑市",
+    sign = "公会签到"
 }
 
 -- 各种道具
@@ -108,5 +109,10 @@ enum.daily_close = { x = 653, y = 1153 }
 
 -- 领取排名奖励
 enum.award_yes = { x = 135, y = 636 }
+
+-- 公会
+enum.consortia = { x = 670, y = 995 }
+enum.consortia_sign = { x = 410, y = 523 }
+enum.consortia_sign_outer = { x = 283, y = 1228 }
 
 return enum

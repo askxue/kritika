@@ -17,6 +17,11 @@ service.hasDoneBoss = function()
     return service.hasDoneEvent(enum.events.boss, currentRole)
 end
 
+-- 今天是否公会签到了
+service.hasSign = function()
+    return service.hasDoneEvent(enum.events.sign, currentRole)
+end
+
 -- 黑市是否刷新 (刷新CD 1h)
 service.isMarketRefresh = function()
     local line = log.find(enum.events.market, currentRole)

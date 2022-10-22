@@ -182,5 +182,17 @@ event.daily = function()
     tap(enum.daily_close.x, enum.daily_close.y)
 end
 
+-- 公会签到
+event.sign = function()
+    util.delay()
+    tap(enum.consortia.x, enum.consortia.y)
+    util.delay()
+    tap(enum.consortia_sign.x, enum.consortia_sign.y)
+    util.delay()
+    tap(enum.consortia_sign_outer.x, enum.consortia_sign_outer.y)
+    -- 记录log
+    log.write(enum.events.sign, currentRole)
+end
+
 return event
 

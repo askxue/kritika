@@ -29,8 +29,6 @@ currentRole = nil
 -- 一些初始化工作
 -- db.init()
 
-print("现在时间:" .. date.now())
-
 -- 脚本必须从角色选择界面开始
 if ui.isChooseRolePage() then
     toast("欢迎你，主人！让我来为你服务吧！^_^")
@@ -42,7 +40,6 @@ if ui.isChooseRolePage() then
 
         -- 等待进入主界面
         common.await(ui.isHomePage)
-        print("成功进入主界面")
         toast("成功进入主界面")
 
         -- 1. 收邮件
@@ -63,7 +60,12 @@ if ui.isChooseRolePage() then
             event.boss()
         end
 
-        -- 4. 领每日任务奖励
+        -- 5. 公会签到
+        if not service.hasSign() then
+            event.sign()
+        end
+
+        -- 领每日任务奖励
         event.daily()
 
 
