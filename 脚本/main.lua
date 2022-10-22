@@ -1,12 +1,21 @@
 -- 脚本主入口
 
--- 引用其他模块，并且起一个别名方便调用
-local ui = require "lib.ui"
-local event = require "lib.event"
-local common = require "lib.common"
-local enum = require "lib.enum"
-local db = require "lib.db"
-local date = require "lib.date"
+-- 引用其他模块 （统一放到main引入，避免循环引用导致脚本崩溃）
+require "lib.common"
+require "lib.config"
+require "lib.date"
+require "lib.db"
+require "lib.enum"
+require "lib.event"
+require "lib.log"
+require "lib.service"
+require "lib.ui"
+require "lib.util"
+
+
+-- TODO 事项
+-- 转圈延迟，统一弄一个sleep方法，里面统一设置延迟时间。
+-- 弄成UI 配置，可以根据运行环境，手动调整该延迟设置。
 
 -- 一些全局变量
 -- 当前角色索引
@@ -42,6 +51,14 @@ if ui.isChooseRolePage() then
 
         -- 2. 黑市
         event.market()
+
+        -- 领取排名奖励
+        --event.award()
+
+        -- 3. 世界boss
+        event.boss()
+
+
 
         -- 返回角色选择界面
         toast("返回角色选择界面")

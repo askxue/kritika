@@ -38,7 +38,9 @@ enum.items = {
 enum.world = {
     yes = "确定.png",
     shop = "商店.png",
-    notTips = "今日不再提示.png"
+    notTips = "今日不再提示.png",
+    canChallenge = "可以挑战.png",
+    getAward = "领取排名奖励.png"
 }
 
 -- 黑市要买的物品
@@ -62,6 +64,8 @@ enum.closeEmail = { x = 599, y = 1146 }
 
 -- 角色头像
 enum.roleProfile = { x = 675, y = 40 }
+-- 大厅icon
+enum.hall = { x = 567, y = 66 }
 -- 角色icon
 enum.roleIcon = { x = 256, y = 366 }
 -- 选择角色
@@ -79,5 +83,15 @@ enum.market = { x = 55, y = 206 }
 enum.marketBegin = { x = 35, y = 131 }
 enum.marketEnd = { x = 526, y = 1135 }
 enum.marketClose = { x = 630, y = 1147 }
+
+-- 挑战模式
+enum.pve = { x = 401, y = 1054 }
+enum.boss = { x = 138, y = 334 }
+enum.start = { x = 50, y = 1067 }
+enum.continue = { x = 64, y = 630 }
+enum.back = { x = 683, y = 1137 }
+
+-- 竞技模式
+
 
 return enum

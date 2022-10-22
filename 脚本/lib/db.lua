@@ -1,5 +1,4 @@
 -- Êý¾Ý³Ö¾Ã²ã
-local config = require "lib.config"
 
 db = {}
 

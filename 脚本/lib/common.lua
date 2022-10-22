@@ -1,5 +1,4 @@
 -- 一些公共方法
-local enum = require "lib.enum"
 
 common = {}
 
@@ -33,6 +32,17 @@ common.isFindImageScoped = function(startX, startY, endX, endY, imageName)
     print(startX, startY, endX, endY, imageName)
     local ret, x, y = common.findPicPlus(startX, startY, endX, endY, imageName)
     print("找图[" .. imageName .. "]结果：" .. ret, x, y)
+    return x ~= -1 and y ~= -1
+end
+
+-- 是否找到了某些颜色： 全屏
+common.isFindColors = function(firstColor, offsetColor)
+    return common.isFindColorsScoped(0, 0, 0, 0, firstColor, offsetColor)
+end
+
+-- 是否找到了某些颜色： 指定范围
+common.isFindColorsScoped = function(startX, startY, endX, endY, firstColor, offsetColor)
+    local x, y = findMultiColor(startX, startY, endX, endY, firstColor, offsetColor, 0, 0.9)
     return x ~= -1 and y ~= -1
 end
 

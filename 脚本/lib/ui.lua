@@ -1,8 +1,5 @@
 -- 各种UI相关的判断
 
-local common = require "lib.common"
-local enum = require "lib.enum"
-
 ui = {}
 
 -- 角色选择界面
@@ -23,6 +20,25 @@ ui.roleList = {
     eX = 632,
     eY = 1223
 }
+-- 刷世界boss，讨伐符石不足，不刷了。
+ui.pveBossNoRune = {
+    sX = 150,
+    sY = 351,
+    eX = 530,
+    eY = 926,
+    png = "讨伐符石不足.png",
+    cancel = {
+        x = 270,
+        y = 755
+    }
+}
+
+-- 找色
+-- 世界boss战斗结束画面
+ui.bossOver = {
+    firstColor = "14CAF8",
+    offsetColor = "-173|-305|2CFFB2|-236|113|FFFFFF|-71|456|32CEE1"
+}
 
 
 -- 是否为角色主界面
@@ -40,6 +56,11 @@ ui.isMarket = function()
     return common.isFindImage(ui.marketPage)
 end
 
+-- 是否boss战结束界面
+ui.isBossOver = function()
+    return common.isFindColors(ui.bossOver.firstColor, ui.bossOver.offsetColor)
+end
+
 -- 返回选择角色界面
 ui.backToRolePage = function()
     sleep(2000)
@@ -47,6 +68,16 @@ ui.backToRolePage = function()
         tap(enum.setting.x, enum.setting.y)
         sleep(2000)
         tap(enum.settingRole.x, enum.settingRole.y)
+    end
+end
+
+-- 返回主页
+ui.backToHomePage = function()
+    sleep(1000)
+    if not ui.isHomePage() then
+        tap(enum.roleProfile.x, enum.roleProfile.y)
+        sleep(2000)
+        tap(enum.hall.x, enum.hall.y)
     end
 end
 

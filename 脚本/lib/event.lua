@@ -1,9 +1,5 @@
 -- 各种事件
 
-local common = require "lib.common"
-local enum = require "lib.enum"
-local ui = require "lib.ui"
-
 event = {}
 
 -- 滑动角色列表
@@ -109,6 +105,67 @@ event.market = function()
     -- 完事了，关闭黑市
     tap(enum.marketClose.x, enum.marketClose.y)
     toast("关闭了黑市")
+end
+
+
+-- 刷世界boss
+event.boss = function()
+    toast("准备刷世界BOSS")
+    -- 返回主页
+    --ui.backToHomePage()
+    sleep(1000)
+    tap(enum.pve.x, enum.pve.y)
+    sleep(2000)
+    -- TODO 如果有领取奖励，则领取奖励
+
+    -- TODO 如果当天刷过boss了，则不刷了
+
+    -- 刷世界boss
+    tap(enum.boss.x, enum.boss.y)
+    sleep(1000)
+    common.tapImageScope(189, 69, 475, 1245, enum.world.canChallenge)
+    sleep(3000)
+    tap(enum.start.x, enum.start.y)
+    sleep(2000)
+    -- 弹出讨伐符石不足，则不刷了。
+    local hasNoRune = common.isFindImageScoped(ui.pveBossNoRune.sX, ui.pveBossNoRune.sY, ui.pveBossNoRune.eX, ui.pveBossNoRune.eY, ui.pveBossNoRune.png)
+    if hasNoRune then
+        toast('符石不足，不刷了')
+        tap(ui.pveBossNoRune.cancel.x, ui.pveBossNoRune.cancel.y)
+    else
+        sleep(63 * 1000)
+        common.await(ui.isBossOver)
+        tap(enum.continue.x, enum.continue.y)
+        -- TODO 记录log，今天已经刷过boss了
+    end
+    toast('返回主界面')
+    for i = 1, 2 do
+        sleep(2000)
+        tap(enum.back.x, enum.back.y)
+    end
+end
+
+-- 领取排行奖励
+event.award = function()
+    -- 返回主页
+    ui.backToHomePage()
+    sleep(1000)
+    tap(enum.pve.x, enum.pve.y)
+    sleep(3000)
+    local xyz = common.findPicAllPoints(enum.world.getAward)
+    if xyz ~= nil then
+        for n = 1, #xyz do
+            local x = xyz[n].x
+            local y = xyz[n].y
+            tap(x, y)
+            sleep(3000)
+            common.tapImage(enum.world.yes)
+            sleep(2000)
+            tap(enum.back.x, enum.back.y)
+        end
+    end
+
+
 end
 
 return event
