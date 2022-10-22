@@ -29,6 +29,13 @@ enum.roles = {
     "时空术士"
 }
 
+-- 各种事件名
+enum.events = {
+    boss = "刷世界Boss",
+    email = "收邮件",
+    market = "黑市"
+}
+
 -- 各种道具
 enum.items = {
     gold = "金币.png"

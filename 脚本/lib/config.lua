@@ -11,6 +11,9 @@ config.db = {
     database = "kritika"
 }
 
+-- log日志文件夹目录 (相对于SD卡)
+config.logDir = "/com.xue65535.kritika/log"
+
 -- 网络延迟
 config.delay = 2000
 

@@ -62,6 +62,8 @@ event.getEmail = function()
     tap(enum.deleteEmail.x, enum.deleteEmail.y)
     util.delay()
     tap(enum.closeEmail.x, enum.closeEmail.y)
+    -- 记录日志
+    log.write(enum.events.email, currentRole)
     toast("关闭邮件箱")
 end
 
@@ -104,6 +106,8 @@ event.market = function()
     end
     -- 完事了，关闭黑市
     tap(enum.marketClose.x, enum.marketClose.y)
+    -- 记录日志
+    log.write(enum.events.market, currentRole)
     toast("关闭了黑市")
 end
 
@@ -136,7 +140,8 @@ event.boss = function()
         util.delay(63 * 1000)
         common.await(ui.isBossOver)
         tap(enum.continue.x, enum.continue.y)
-        -- TODO 记录log，今天已经刷过boss了
+        -- 记录log
+        log.write(enum.events.boss, currentRole)
     end
     toast('返回主界面')
     for i = 1, 2 do

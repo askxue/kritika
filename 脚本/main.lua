@@ -12,6 +12,12 @@ require "lib.service"
 require "lib.ui"
 require "lib.util"
 
+-- 单元测试区域
+
+
+
+-- end
+
 -- 一些全局变量
 -- 当前角色索引
 roleIndex = 1
@@ -40,21 +46,25 @@ if ui.isChooseRolePage() then
         toast("成功进入主界面")
 
         -- 1. 收邮件
-
-        event.getEmail()
+        if not service.hasDoneEmail() then
+            event.getEmail()
+        end
 
         -- 2. 黑市
-        event.market()
+        if service.isMarketRefresh() then
+            event.market()
+        end
 
         -- 领取排名奖励
         --event.award()
 
         -- 3. 世界boss
-        event.boss()
+        if not service.hasDoneBoss() then
+            event.boss()
+        end
 
         -- 4. 领每日任务奖励
         event.daily()
-
 
 
         -- 返回角色选择界面
