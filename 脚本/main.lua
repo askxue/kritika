@@ -12,11 +12,6 @@ require "lib.service"
 require "lib.ui"
 require "lib.util"
 
-
--- TODO 事项
--- 转圈延迟，统一弄一个sleep方法，里面统一设置延迟时间。
--- 弄成UI 配置，可以根据运行环境，手动调整该延迟设置。
-
 -- 一些全局变量
 -- 当前角色索引
 roleIndex = 1
@@ -26,7 +21,6 @@ roleNum = #enum.roles
 currentRole = nil
 
 -- 一些初始化工作
--- TODO 有精力再去研究面向对象开发，先实现最基本的脱机版
 -- db.init()
 
 print("现在时间:" .. date.now())
@@ -38,7 +32,7 @@ if ui.isChooseRolePage() then
         -- 切换角色，进入主界面
         currentRole = enum.roles[roleIndex]
         event.changeRole(currentRole)
-        sleep(1000)
+        util.delay()
 
         -- 等待进入主界面
         common.await(ui.isHomePage)
@@ -58,6 +52,9 @@ if ui.isChooseRolePage() then
         -- 3. 世界boss
         event.boss()
 
+        -- 4. 领每日任务奖励
+        event.daily()
+
 
 
         -- 返回角色选择界面
@@ -70,7 +67,7 @@ if ui.isChooseRolePage() then
 
 else
     toast("请在角色选择界面开始")
-    sleep(2000)
+    util.delay()
 end
 
 toast("执行完毕，我也可以休息了！(*^▽^*)")

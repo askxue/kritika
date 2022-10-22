@@ -11,11 +11,12 @@
         <file name="lib\config.lua"/>
         <file name="lib\date.lua"/>
         <file name="lib\log.lua"/>
+        <file name="test.lua"/>
     </lua>
     <rc entry="kritika.rc"/>
     <ui entry="kritika.ui"/>
     <luae entry="">
-        <file name="armeabi-v7a"/>
         <file name="x86"/>
+        <file name="armeabi-v7a"/>
     </luae>
 </lcproj>

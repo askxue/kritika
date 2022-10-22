@@ -93,5 +93,13 @@ enum.back = { x = 683, y = 1137 }
 
 -- 竞技模式
 
+-- 一些功能模块位置，一般都是固定位置，直接tap点击即可。
+-- 每日任务
+enum.daily = { x = 55, y = 773 }
+enum.daily_getAll = { x = 617, y = 947 }
+enum.daily_close = { x = 653, y = 1153 }
+
+-- 领取排名奖励
+enum.award_yes = { x = 135, y = 636 }
 
 return enum

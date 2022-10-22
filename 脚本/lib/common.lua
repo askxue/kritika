@@ -64,7 +64,7 @@ end
 common.await = function(condition)
     local timer = 0;
     while not condition() do
-        sleep(1000)
+        util.delay()
         timer = timer + 1
         if timer > 3 then
             -- 进行检查，是否由于某些特殊原因，导致一直卡死在这了。

@@ -11,4 +11,7 @@ config.db = {
     database = "kritika"
 }
 
+-- ÍøÂçÑÓ³Ù
+config.delay = 2000
+
 return config

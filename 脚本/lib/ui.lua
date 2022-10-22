@@ -63,20 +63,20 @@ end
 
 -- 返回选择角色界面
 ui.backToRolePage = function()
-    sleep(2000)
+    util.delay()
     if ui.isHomePage() then
         tap(enum.setting.x, enum.setting.y)
-        sleep(2000)
+        util.delay()
         tap(enum.settingRole.x, enum.settingRole.y)
     end
 end
 
 -- 返回主页
 ui.backToHomePage = function()
-    sleep(1000)
+    util.delay()
     if not ui.isHomePage() then
         tap(enum.roleProfile.x, enum.roleProfile.y)
-        sleep(2000)
+        util.delay()
         tap(enum.hall.x, enum.hall.y)
     end
 end
