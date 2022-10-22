@@ -48,7 +48,8 @@ enum.world = {
     shop = "商店.png",
     notTips = "今日不再提示.png",
     canChallenge = "可以挑战.png",
-    getAward = "领取排名奖励.png"
+    getAward = "排名奖励.png",
+    gift = "特价礼包.png"
 }
 
 -- 黑市要买的物品
@@ -95,6 +96,8 @@ enum.marketClose = { x = 630, y = 1147 }
 -- 挑战模式
 enum.pve = { x = 401, y = 1054 }
 enum.boss = { x = 138, y = 334 }
+enum.boss_challenge = { x = 323, y = 633 }
+enum.boss_getAward = { x = 46, y = 642 }
 enum.start = { x = 50, y = 1067 }
 enum.continue = { x = 64, y = 630 }
 enum.back = { x = 683, y = 1137 }
@@ -114,5 +117,8 @@ enum.award_yes = { x = 135, y = 636 }
 enum.consortia = { x = 670, y = 995 }
 enum.consortia_sign = { x = 410, y = 523 }
 enum.consortia_sign_outer = { x = 283, y = 1228 }
+
+-- 特价礼包
+enum.gift_close = { x = 634, y = 1134 }
 
 return enum

@@ -106,55 +106,46 @@ end
 -- 刷世界boss
 event.boss = function()
     toast("准备刷世界BOSS")
-    -- 返回主页
-    --ui.backToHomePage()
     util.delay()
     tap(enum.pve.x, enum.pve.y)
     util.delay()
     -- 刷世界boss
     tap(enum.boss.x, enum.boss.y)
     util.delay()
-    common.tapImageScope(189, 69, 475, 1245, enum.world.canChallenge)
-    util.delay()
-    tap(enum.start.x, enum.start.y)
-    util.delay()
-    -- 弹出讨伐符石不足，则不刷了。
-    local hasNoRune = common.isFindImageScoped(ui.pveBossNoRune.sX, ui.pveBossNoRune.sY, ui.pveBossNoRune.eX, ui.pveBossNoRune.eY, ui.pveBossNoRune.png)
-    if hasNoRune then
-        toast('符石不足，不刷了')
-        tap(ui.pveBossNoRune.cancel.x, ui.pveBossNoRune.cancel.y)
+    -- 是否可挑战，不能挑战则是结算中
+    local canChallenge = common.isFindImageScoped(249, 481, 417, 815, enum.world.canChallenge)
+    if canChallenge then
+        tap(enum.boss_challenge.x, enum.boss_challenge.y)
+        util.delay()
+        -- 领取排名奖励
+        local rank = common.isFindImageScoped(27, 457, 139, 781, enum.world.getAward)
+        if rank then
+            toast('领取排名奖励')
+            tap(enum.boss_getAward.x, enum.boss_getAward.y)
+        end
+        util.delay()
+        -- 开始挑战
+        tap(enum.start.x, enum.start.y)
+        util.delay()
+        -- 弹出讨伐符石不足，则不刷了。
+        local hasNoRune = common.isFindImageScoped(ui.pveBossNoRune.sX, ui.pveBossNoRune.sY, ui.pveBossNoRune.eX, ui.pveBossNoRune.eY, ui.pveBossNoRune.png)
+        if hasNoRune then
+            toast('符石不足，不刷了')
+            tap(ui.pveBossNoRune.cancel.x, ui.pveBossNoRune.cancel.y)
+        else
+            util.delay(65 * 1000)
+            common.await(ui.isBossOver)
+            tap(enum.continue.x, enum.continue.y)
+            -- 记录log
+            log.write(enum.events.boss, currentRole)
+        end
     else
-        util.delay(65 * 1000)
-        common.await(ui.isBossOver)
-        tap(enum.continue.x, enum.continue.y)
-        -- 记录log
-        log.write(enum.events.boss, currentRole)
+        toast('世界Boss结算中')
     end
     toast('返回主界面')
     for i = 1, 2 do
         util.delay()
         tap(enum.back.x, enum.back.y)
-    end
-end
-
--- 领取排行奖励
-event.award = function()
-    toast('开始领取排行奖励')
-    -- 返回主页
-    util.delay()
-    tap(enum.pve.x, enum.pve.y)
-    util.delay()
-    local xyz = common.findPicAllPoints(enum.world.getAward)
-    if xyz ~= nil then
-        for n = 1, #xyz do
-            local x = xyz[n].x
-            local y = xyz[n].y
-            tap(x, y)
-            util.delay()
-            tap(enum.award_yes.x, enum.award_yes.y)
-            util.delay()
-            tap(enum.back.x, enum.back.y)
-        end
     end
 end
 

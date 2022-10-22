@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<lcproj projname="kritika" appname="ÔÆ´úÁ·" autorotate="false" autorun="1" autorunscript="1" cputype="2" icon="D:\code\game\kritika\kritika.png" is_acc_mode="0" isdebugapkplugin="0" jmpjdcheck="0" localmode="true" pkgname="com.xue65535.kritika" pluginapkpath="" rgbmode="false" sel="0" showfloatcontrol="1" showhome="1" targetsize="720x1280" updateurl="" useocr="1" useoldmenu="1" ver="8">
+<lcproj projname="kritika" appname="ÔÆ´úÁ·" autorotate="false" autorun="1" autorunscript="1" cputype="2" icon="D:\code\game\kritika\kritika.png" is_acc_mode="0" isdebugapkplugin="0" jmpjdcheck="0" localmode="true" pkgname="com.xue65535.kritika" pluginapkpath="" rgbmode="false" sel="0" showfloatcontrol="1" showhome="1" targetsize="720x1280" updateurl="" useocr="1" useoldmenu="1" ver="9">
     <lua entry="main.lua">
         <file name="lib\ui.lua"/>
         <file name="lib\event.lua"/>

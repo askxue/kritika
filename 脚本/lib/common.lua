@@ -67,6 +67,8 @@ common.await = function(condition)
         if timer > 3 then
             -- 进行检查，是否由于某些特殊原因，导致一直卡死在这了。
             common.closeTips()
+            util.delay(1000)
+            common.closeGiftDialog()
         end
     end
     return true
@@ -74,7 +76,22 @@ end
 
 -- 关闭今日活动提示
 common.closeTips = function()
-    common.tapImage(enum.world.notTips)
+    local notTips = common.isFindImage(enum.world.notTips)
+    while notTips do
+        toast('关闭活动咨询')
+        common.tapImage(enum.world.notTips)
+        util.delay()
+    end
+end
+
+-- 关闭特价礼包弹窗
+common.closeGiftDialog = function()
+    local gift = common.isFindImage(enum.world.gift)
+    while gift do
+        toast('关闭特价礼包弹窗')
+        tap(enum.gift_close.x, enum.gift_close.y)
+        util.delay()
+    end
 end
 
 return common

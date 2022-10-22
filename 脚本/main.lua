@@ -45,18 +45,10 @@ if ui.isChooseRolePage() then
         common.await(ui.isHomePage)
         toast("成功进入主界面")
 
-        -- 1. 收邮件
-        if not service.hasDoneEmail() then
-            event.getEmail()
-        end
-
         -- 2. 黑市
         if service.isMarketRefresh() then
             event.market()
         end
-
-        -- 领取排名奖励
-        --event.award()
 
         -- 3. 世界boss
         if not service.hasDoneBoss() then
@@ -71,6 +63,10 @@ if ui.isChooseRolePage() then
         -- 领每日任务奖励
         event.daily()
 
+        -- 收邮件
+        if not service.hasDoneEmail() then
+            event.getEmail()
+        end
 
         -- 返回角色选择界面
         toast("返回角色选择界面")
