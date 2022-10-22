@@ -192,6 +192,9 @@ event.sign = function()
     tap(enum.consortia_sign_outer.x, enum.consortia_sign_outer.y)
     -- ¼ÇÂ¼log
     log.write(enum.events.sign, currentRole)
+    util.delay()
+    tap(enum.back.x, enum.back.y)
+    util.delay()
 end
 
 return event
