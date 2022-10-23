@@ -66,8 +66,8 @@ common.await = function(condition)
         timer = timer + 1
         if timer > 3 then
             -- 进行检查，是否由于某些特殊原因，导致一直卡死在这了。
-            common.closeTips()
-            util.delay(1000)
+            --common.closeTips()
+            --util.delay(1000)
             common.closeGiftDialog()
         end
     end

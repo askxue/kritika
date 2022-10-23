@@ -29,11 +29,10 @@ enum.roles = {
     --"时空术士"
 }
 
--- 各种事件名
-enum.events = {
+-- 各种事件名（每天一次的那种）
+enum.dailyEvents = {
     boss = "刷世界Boss",
     email = "收邮件",
-    market = "黑市",
     sign = "公会签到"
 }
 

@@ -30,7 +30,23 @@ log.find = function(event, role)
         -- 文件不存在，不用找了，直接返回nil
         return nil
     else
-        local result = nil
+        for line in io.lines(path) do
+            local ret = splitStr(line, "#")
+            if ret[1] == event and ret[2] == role then
+                return ret
+            end
+        end
+    end
+end
+
+-- 读日志 （返回匹配的最后一条记录）
+log.findLast = function(event, role)
+    local path = getPath()
+    if not fileExist(path) then
+        -- 文件不存在，不用找了，直接返回nil
+        return nil
+    else
+        local result
         for line in io.lines(path) do
             local ret = splitStr(line, "#")
             if ret[1] == event and ret[2] == role then

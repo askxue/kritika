@@ -40,6 +40,7 @@ event.changeRole = function(role)
     end
     -- 找到角色了，重置滑动角色slider次数
     countSlideTimes = 0
+    util.delay()
     ui.tapRole(rolePng)
     util.delay()
     tap(enum.chooseRole.x, enum.chooseRole.y)
@@ -61,7 +62,7 @@ event.getEmail = function()
     util.delay()
     tap(enum.closeEmail.x, enum.closeEmail.y)
     -- 记录日志
-    log.write(enum.events.email, currentRole)
+    log.write(enum.dailyEvents.email, currentRole)
     toast("关闭邮件箱")
 end
 
@@ -98,7 +99,7 @@ event.market = function()
     -- 完事了，关闭黑市
     tap(enum.marketClose.x, enum.marketClose.y)
     -- 记录日志
-    log.write(enum.events.market, currentRole)
+    db.write(db.events.market, currentRole)
     toast("关闭了黑市")
 end
 
@@ -137,7 +138,7 @@ event.boss = function()
             common.await(ui.isBossOver)
             tap(enum.continue.x, enum.continue.y)
             -- 记录log
-            log.write(enum.events.boss, currentRole)
+            log.write(enum.dailyEvents.boss, currentRole)
         end
     else
         toast('世界Boss结算中')
@@ -170,7 +171,7 @@ event.sign = function()
     util.delay()
     tap(enum.consortia_sign_outer.x, enum.consortia_sign_outer.y)
     -- 记录log
-    log.write(enum.events.sign, currentRole)
+    log.write(enum.dailyEvents.sign, currentRole)
     util.delay()
     tap(enum.back.x, enum.back.y)
     util.delay()

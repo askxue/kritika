@@ -16,13 +16,24 @@ db.init = function()
 end
 
 db.insert = function()
-
+    -- TODO 数据库 CRUD
 end
 
-
--- 脱机版，先用全局变量临时存储数据。
-db.emails = {
-
+-- 先实现内存版数据存储，重启脚本数据丢失。（适合存放一些不需要持久化的数据）
+db.events = {
+    -- 逛黑市
+    market = "market"
 }
+db.market = {}
+
+-- 记录某事件发生的时间
+db.write = function(event, role)
+    db[event][role] = os.time()
+end
+
+-- 读取某时间发生的时间
+db.read = function(event, role)
+    return db[event][role]
+end
 
 return db
