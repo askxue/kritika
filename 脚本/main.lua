@@ -14,7 +14,7 @@ require "lib.util"
 
 -- µ¥Ôª²âÊÔÇøÓò
 
-
+common.closeTips()
 
 -- end
 

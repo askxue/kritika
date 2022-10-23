@@ -76,8 +76,8 @@ end
 
 -- 关闭今日活动提示
 common.closeTips = function()
-    local notTips = common.isFindImage(enum.world.notTips)
-    while notTips do
+    -- TODO 有bug，没起作用
+    while common.isFindImage(enum.world.notTips) do
         toast('关闭活动咨询')
         common.tapImage(enum.world.notTips)
         util.delay()
@@ -86,8 +86,7 @@ end
 
 -- 关闭特价礼包弹窗
 common.closeGiftDialog = function()
-    local gift = common.isFindImage(enum.world.gift)
-    while gift do
+    while common.isFindImage(enum.world.gift) do
         toast('关闭特价礼包弹窗')
         tap(enum.gift_close.x, enum.gift_close.y)
         util.delay()
