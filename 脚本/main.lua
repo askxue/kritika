@@ -15,7 +15,6 @@ require "lib.util"
 -- 单元测试区域
 
 
-
 -- end
 
 -- 从UI读取配置
@@ -45,20 +44,23 @@ if ui.isChooseRolePage() then
         common.await(ui.isHomePage)
         toast("成功进入主界面")
 
-        -- 2. 黑市
+        -- 黑市
         if service.isMarketRefresh() then
             event.market()
         end
 
-        -- 3. 世界boss
+        -- 世界boss
         if not service.hasDoneBoss() then
             event.boss()
         end
 
-        -- 5. 公会签到
+        -- 公会签到
         if not service.hasSign() then
             event.sign()
         end
+
+        -- 推月塔
+        event.monthTower()
 
         -- 领每日任务奖励
         event.daily()

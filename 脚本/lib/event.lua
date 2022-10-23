@@ -129,8 +129,7 @@ event.boss = function()
         tap(enum.start.x, enum.start.y)
         util.delay()
         -- 弹出讨伐符石不足，则不刷了。
-        local hasNoRune = common.isFindImageScoped(ui.pveBossNoRune.sX, ui.pveBossNoRune.sY, ui.pveBossNoRune.eX, ui.pveBossNoRune.eY, ui.pveBossNoRune.png)
-        if hasNoRune then
+        if ui.noRune() then
             toast('符石不足，不刷了')
             tap(ui.pveBossNoRune.cancel.x, ui.pveBossNoRune.cancel.y)
         else
@@ -175,6 +174,90 @@ event.sign = function()
     util.delay()
     tap(enum.back.x, enum.back.y)
     util.delay()
+end
+
+-- 月塔
+event.monthTower = function()
+    toast('开始推试练塔')
+    util.delay()
+    tap(enum.pve.x, enum.pve.y)
+    util.delay()
+    tap(enum.monthTower.x, enum.monthTower.y)
+    util.delay()
+    -- 本月是否已经推过塔了 （物理、魔法）
+    for i, item in ipairs(ui.monthTower_types) do
+        local type = item
+        if not service.hasClearTower(type) then
+            toast('准备推' .. type)
+            util.delay()
+            tap(ui.monthTower.types[type].x, ui.monthTower.types[type].y)
+            util.delay()
+            while not ui.isFirstFloorOfTower() do
+                -- 滑动月塔，一直滑到第一层
+                touchDown(1, 145, 377)
+                util.delay(200)
+                touchMoveEx(1, 400, 377, 800)
+                touchUp(1)
+            end
+            toast('到月塔第1层了，开始刷塔')
+            util.delay()
+            -- 是否继续刷，标识位
+            local continue = true
+            local failed = false
+            while not ui.isLastFloorOfTower() do
+                -- 没到最后一层，则一直刷，除非中途有失败的情况。
+                while ui.hasNotClearFloor() and continue and not failed do
+                    local ret, x, y = ui.notClearFloorOfTower()
+                    tap(x, y)
+                    util.delay()
+                    -- 开始挑战
+                    tap(ui.monthTower.start.x, ui.monthTower.start.y)
+                    util.delay()
+                    if ui.noRune() then
+                        -- 讨伐符文不足，不刷了
+                        toast('符石不足，不刷了')
+                        tap(ui.pveBossNoRune.cancel.x, ui.pveBossNoRune.cancel.y)
+                        continue = false
+                    else
+                        -- 开始刷塔了，等待出现 finish画面
+                        local result = common.awaitYesNo(ui.isFloorClearOver, ui.isFloorClearFailed)
+                        if not result then
+                            -- 成功则继续
+                            -- 失败则退出刷塔（打不过，不打了。o(╥﹏╥)o）
+                            toast('打输了,算了，暂时不打了')
+                            failed = true
+                        end
+                        tap(ui.monthTower.continue.x, ui.monthTower.continue.y)
+                        util.delay()
+                        -- 等待返回试练塔主界面
+                        common.await(ui.isHomePageOfTower)
+                    end
+                end
+                if not continue or failed then
+                    -- 退出外层循环 (没符文、挑战失败..等各种情况)
+                    break
+                end
+                -- 没有未清理楼层，继续往上滑动
+                -- 滑动月塔，一直滑到最后一层
+                touchDown(1, 400, 377)
+                util.delay(200)
+                touchMoveEx(1, 145, 377, 800)
+                touchUp(1)
+            end
+            -- 记录日志到月文件夹
+            if continue or failed then
+                log.write(type, currentRole, true)
+            end
+            toast(type .. '推完了')
+            util.delay()
+        end
+    end
+    -- 退出试练塔，返回主页
+    toast('返回主界面')
+    for i = 1, 2 do
+        util.delay()
+        tap(enum.back.x, enum.back.y)
+    end
 end
 
 return event

@@ -33,13 +33,67 @@ ui.pveBossNoRune = {
     }
 }
 
+-- 月塔
+ui.monthTower = {
+    first = "月塔1层",
+    last = "月塔65层",
+    notClear = "没清理的楼层.png",
+    homePage = {
+        sX = 534,
+        sY = 86,
+        eX = 658,
+        eY = 383,
+        png = "试练塔.png"
+    },
+    sX = 42,
+    sY = 127,
+    eX = 500,
+    eY = 604,
+    -- 开始按钮坐标
+    start = {
+        x = 27,
+        y = 1069
+    },
+    -- 点击屏幕继续刷
+    continue = {
+        x = 106,
+        y = 636
+    },
+    -- 成功结束画面
+    success = {
+        firstColor = "3DEEFF",
+        offsetColor = "-1|63|44FFFF|1|127|49FFFF|-4|229|44FFFF|1|364|38DDFF|-6|263|44FFFF"
+    },
+    -- 失败结束画面
+    failed = {
+        firstColor = "31CCDE",
+        offsetColor = "3|81|000000|135|-50|BBBBBB|119|54|BBBBBB|-179|-89|2BB27A"
+    },
+    -- 物理、魔法塔
+    types = {
+        physics = {
+            x = 541,
+            y = 249
+        },
+        magic = {
+            x = 539,
+            y = 505
+        }
+    }
+}
+
+ui.monthTower_types = {
+    "physics",
+    "magic"
+}
+
+
 -- 找色
 -- 世界boss战斗结束画面
 ui.bossOver = {
     firstColor = "14CAF8",
     offsetColor = "-173|-305|2CFFB2|-236|113|FFFFFF|-71|456|32CEE1"
 }
-
 
 -- 是否为角色主界面
 ui.isHomePage = function()
@@ -84,6 +138,48 @@ end
 -- 点击某个角色
 ui.tapRole = function(role)
     common.tapImageScope(ui.roleList.sX, ui.roleList.sY, ui.roleList.eX, ui.roleList.eY, role)
+end
+
+-- 是否试练塔主界面
+ui.isHomePageOfTower = function()
+    return common.isFindImageScoped(ui.monthTower.homePage.sX, ui.monthTower.homePage.sY, ui.monthTower.homePage.eX, ui.monthTower.homePage.eY, ui.monthTower.homePage.png)
+end
+
+-- 是否到达了月塔第一层
+ui.isFirstFloorOfTower = function()
+    local first = ui.monthTower.first .. ".png" .. "|" .. ui.monthTower.first .. "_1.png"
+    return common.isFindImageScoped(ui.monthTower.sX, ui.monthTower.sY, ui.monthTower.eX, ui.monthTower.eY, first)
+end
+
+-- 是否到达了月塔最后一层
+ui.isLastFloorOfTower = function()
+    local last = ui.monthTower.last .. ".png" .. "|" .. ui.monthTower.last .. "_1.png"
+    return common.isFindImageScoped(ui.monthTower.sX, ui.monthTower.sY, ui.monthTower.eX, ui.monthTower.eY, last)
+end
+
+-- 是否有未清理楼层
+ui.hasNotClearFloor = function()
+    return common.isFindImageScoped(ui.monthTower.sX, ui.monthTower.sY, ui.monthTower.eX, ui.monthTower.eY, ui.monthTower.notClear)
+end
+
+-- 获取未清理的楼层的坐标
+ui.notClearFloorOfTower = function()
+    return common.findPicPlus(ui.monthTower.sX, ui.monthTower.sY, ui.monthTower.eX, ui.monthTower.eY, ui.monthTower.notClear)
+end
+
+-- 讨伐符石不足
+ui.noRune = function()
+    return common.isFindImageScoped(ui.pveBossNoRune.sX, ui.pveBossNoRune.sY, ui.pveBossNoRune.eX, ui.pveBossNoRune.eY, ui.pveBossNoRune.png)
+end
+
+-- 该层塔是否刷完（成功）
+ui.isFloorClearOver = function()
+    return common.isFindColors(ui.monthTower.success.firstColor, ui.monthTower.success.offsetColor)
+end
+
+-- 该层塔是否刷完（失败）
+ui.isFloorClearFailed = function()
+    return common.isFindColors(ui.monthTower.failed.firstColor, ui.monthTower.failed.offsetColor)
 end
 
 return ui

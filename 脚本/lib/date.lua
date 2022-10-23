@@ -12,6 +12,11 @@ date.today = function()
     return os.date("%Y-%m-%d")
 end
 
+-- 本月
+date.currentMonth = function()
+    return os.date("%Y-%m")
+end
+
 -- 比较两个时间之间相隔的小时
 date.diffHour = function(from, to)
     local fromHour = os.date("*t", from).hour

@@ -7,6 +7,11 @@ service.hasDoneEvent = function(event, role)
     return log.find(event, role) ~= nil
 end
 
+-- 本月是否做过某事
+service.hasDoneEventMonthly = function(event, role)
+    return log.find(event, role, true) ~= nil
+end
+
 -- 今天是否收过邮件
 service.hasDoneEmail = function()
     return service.hasDoneEvent(enum.dailyEvents.email, currentRole)
@@ -20,6 +25,11 @@ end
 -- 今天是否公会签到了
 service.hasSign = function()
     return service.hasDoneEvent(enum.dailyEvents.sign, currentRole)
+end
+
+-- 本月是否刷过试练塔了
+service.hasClearTower = function(type)
+    return service.hasDoneEventMonthly(type, currentRole)
 end
 
 -- 黑市是否刷新 (刷新CD 1h)

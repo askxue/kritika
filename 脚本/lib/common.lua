@@ -4,10 +4,10 @@ common = {}
 
 -- 找图： 普通 & 高级找图，双重校验
 common.findPicPlus = function(startX, startY, endX, endY, imageName)
-    local ret, x, y = findPic(startX, startY, endX, endY, imageName, "101010", 0, 0.9)
+    local ret, x, y = findPic(startX, startY, endX, endY, imageName, "101010", 0, 0.98)
     if x == -1 and y == -1 then
         -- 没找到图，使用高级查找再次尝试
-        ret, x, y = findPicEx(startX, startY, endX, endY, imageName, 0.9)
+        ret, x, y = findPicEx(startX, startY, endX, endY, imageName, 0.98)
     end
     return ret, x, y
 end
@@ -72,6 +72,14 @@ common.await = function(condition)
         end
     end
     return true
+end
+
+-- 等待条件成立，成功、失败
+common.awaitYesNo = function(yes, no)
+    while not yes() and not no() do
+        util.delay()
+    end
+    return yes()
 end
 
 -- 关闭今日活动提示

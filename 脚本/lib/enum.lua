@@ -120,4 +120,7 @@ enum.consortia_sign_outer = { x = 283, y = 1228 }
 -- ÌØ¼ÛÀñ°ü
 enum.gift_close = { x = 634, y = 1134 }
 
+-- ÊÔÁ·Ëş
+enum.monthTower = { x = 405, y = 791 }
+
 return enum
