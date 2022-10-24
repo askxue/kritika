@@ -27,6 +27,11 @@ service.hasSign = function()
     return service.hasDoneEvent(enum.dailyEvents.sign, currentRole)
 end
 
+-- 是否做过每日任务了
+service.hasDoneDaily = function()
+    return service.hasDoneEvent(enum.dailyEvents.daily, currentRole)
+end
+
 -- 本月是否刷过试练塔了
 service.hasClearTower = function(type)
     return service.hasDoneEventMonthly(type, currentRole)

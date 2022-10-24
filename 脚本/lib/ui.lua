@@ -173,6 +173,12 @@ ui.notClearFloorOfTower = function()
     return common.findPicPlus(ui.monthTower.sX, ui.monthTower.sY, ui.monthTower.eX, ui.monthTower.eY, ui.monthTower.notClear)
 end
 
+-- 点击试练塔第一层
+ui.tapFirstFloorOfTower = function()
+    local first = ui.monthTower.first .. ".png" .. "|" .. ui.monthTower.first .. "_1.png"
+    common.tapImageScope(ui.monthTower.sX, ui.monthTower.sY, ui.monthTower.eX, ui.monthTower.eY, first)
+end
+
 -- 讨伐符石不足
 ui.noRune = function()
     return common.isFindImageScoped(ui.pveBossNoRune.sX, ui.pveBossNoRune.sY, ui.pveBossNoRune.eX, ui.pveBossNoRune.eY, ui.pveBossNoRune.png)

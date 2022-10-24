@@ -151,13 +151,84 @@ end
 
 -- 领每日任务奖励
 event.daily = function()
-    toast('开始领每日任务奖励')
+    toast('开始做每日任务')
     util.delay()
+    -- 向好友发送疲劳
+    tap(data.icon.friends.iconX, data.icon.friends.iconY)
+    util.delay()
+    tap(data.icon.friends.sendX, data.icon.friends.sendY)
+    util.delay()
+    tap(data.icon.friends.closeX, data.icon.friends.closeY)
+    util.delay()
+    -- 宠物召唤一次
+    tap(data.icon.pet.iconX, data.icon.pet.iconY)
+    util.delay()
+    tap(data.icon.pet.callX, data.icon.pet.callY)
+    util.delay()
+    tap(data.icon.pet.getX, data.icon.pet.getY)
+    util.delay()
+    tap(data.icon.pet.getOneX, data.icon.pet.getOneY)
+    util.delay()
+    tap(data.icon.pet.clickX, data.icon.pet.clickY)
+    util.delay()
+    tap(data.icon.pet.backX, data.icon.pet.backY)
+    util.delay()
+    -- 试练塔一次
+    tap(data.pve.icon.x, data.pve.icon.y)
+    util.delay()
+    tap(enum.monthTower.x, enum.monthTower.y)
+    util.delay()
+    while not ui.isFirstFloorOfTower() do
+        -- 滑动月塔，一直滑到第一层
+        touchDown(1, 145, 377)
+        util.delay(200)
+        touchMoveEx(1, 400, 377, 800)
+        touchUp(1)
+    end
+    toast('到月塔第1层了，开始刷塔')
+    util.delay()
+    ui.tapFirstFloorOfTower()
+    util.delay()
+    -- 开始挑战
+    tap(ui.monthTower.start.x, ui.monthTower.start.y)
+    util.delay()
+    if ui.noRune() then
+        -- 讨伐符文不足，不刷了
+        toast('符石不足，不刷了')
+        tap(ui.pveBossNoRune.cancel.x, ui.pveBossNoRune.cancel.y)
+    else
+        -- 开始刷塔了，等待出现 finish画面
+        local result = common.awaitYesNo(ui.isFloorClearOver, ui.isFloorClearFailed, 60 * 1000)
+        if not result then
+            -- 成功则继续
+            -- 失败则退出刷塔（打不过，不打了。o(╥﹏╥)o）
+            toast('打输了,算了，暂时不打了')
+        end
+        util.delay()
+        tap(ui.monthTower.continue.x, ui.monthTower.continue.y)
+        util.delay()
+        -- 等待返回试练塔主界面
+        common.await(ui.isHomePageOfTower)
+    end
+    -- 退出试练塔，返回主页
+    toast('返回主界面')
+    for i = 1, 2 do
+        util.delay()
+        tap(enum.back.x, enum.back.y)
+    end
+
+    -- TODO  未完待续
+
+
+
+    -- 领取每日奖励
     tap(enum.daily.x, enum.daily.y)
     util.delay()
     tap(enum.daily_getAll.x, enum.daily_getAll.y)
     util.delay()
     tap(enum.daily_close.x, enum.daily_close.y)
+    -- 记录log
+    log.write(enum.dailyEvents.daily, currentRole)
 end
 
 -- 公会签到

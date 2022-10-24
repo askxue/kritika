@@ -33,7 +33,8 @@ enum.roles = {
 enum.dailyEvents = {
     boss = "刷世界Boss",
     email = "收邮件",
-    sign = "公会签到"
+    sign = "公会签到",
+    daily = "每日任务"
 }
 
 -- 各种道具

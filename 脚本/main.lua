@@ -65,7 +65,9 @@ if ui.isChooseRolePage() then
         end
 
         -- 领每日任务奖励
-        event.daily()
+        if tonumber(config.settings.daily) == 0 and not service.hasDoneDaily() then
+            event.daily()
+        end
 
         -- 收邮件
         if not service.hasDoneEmail() then
