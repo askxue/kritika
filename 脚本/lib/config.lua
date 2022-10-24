@@ -17,7 +17,9 @@ config.logDir = "/com.xue65535.kritika/log"
 -- 设置
 config.settings = {
     -- 操作延迟（每次动作后的停顿时间，需根据游戏卡顿，网络情况动态调整）
-    delay = 3000
+    delay = 3000,
+    -- 是否刷试练塔 （0=刷、1=不刷）
+    tower = 0
 }
 
 -- UI名称
@@ -27,7 +29,7 @@ config.ui = "kritika.ui"
 -- 加载配置
 config.load = function()
     toast('启动配置UI')
-    local action, arr = showUI(config.ui, 720, 1280)
+    local action, arr = showUI(config.ui, 700, 1200)
     for key, value in pairs(arr) do
         config.settings[key] = value
     end

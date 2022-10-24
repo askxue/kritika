@@ -60,7 +60,9 @@ if ui.isChooseRolePage() then
         end
 
         -- 推月塔
-        event.monthTower()
+        if tonumber(config.settings.tower) == 0 then
+            event.monthTower()
+        end
 
         -- 领每日任务奖励
         event.daily()

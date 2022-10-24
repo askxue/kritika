@@ -62,7 +62,13 @@ ui.monthTower = {
     -- 成功结束画面
     success = {
         firstColor = "3DEEFF",
-        offsetColor = "-1|63|44FFFF|1|127|49FFFF|-4|229|44FFFF|1|364|38DDFF|-6|263|44FFFF"
+        offsetColor = "-1|63|44FFFF|1|127|49FFFF|-4|229|44FFFF|1|364|38DDFF|-6|263|44FFFF",
+        secondColor = "58E0FF",
+        secondOffsetColor = "49|148|AAFFFF|23|243|44FFFF|22|275|44FFFF|46|321|99FFFF|37|385|66FFFF",
+        sX = 524,
+        sY = 403,
+        eX = 670,
+        eY = 887
     },
     -- 失败结束画面
     failed = {
@@ -174,7 +180,9 @@ end
 
 -- 该层塔是否刷完（成功）
 ui.isFloorClearOver = function()
-    return common.isFindColors(ui.monthTower.success.firstColor, ui.monthTower.success.offsetColor)
+    local firstColor = common.isFindColors(ui.monthTower.success.firstColor, ui.monthTower.success.offsetColor)
+    local secondColor = common.isFindColorsScoped(ui.monthTower.success.sX, ui.monthTower.success.sY, ui.monthTower.success.eX, ui.monthTower.success.eY, ui.monthTower.success.secondColor, ui.monthTower.success.secondOffsetColor)
+    return firstColor or secondColor
 end
 
 -- 该层塔是否刷完（失败）

@@ -75,9 +75,14 @@ common.await = function(condition)
 end
 
 -- 等待条件成立，成功、失败
-common.awaitYesNo = function(yes, no)
+common.awaitYesNo = function(yes, no, timeout)
+    local timer = 0;
     while not yes() and not no() do
+        if timeout ~= nil and timer > timeout then
+            break
+        end
         util.delay()
+        timer = timer + 1
     end
     return yes()
 end

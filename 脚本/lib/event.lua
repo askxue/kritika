@@ -220,13 +220,14 @@ event.monthTower = function()
                         continue = false
                     else
                         -- 开始刷塔了，等待出现 finish画面
-                        local result = common.awaitYesNo(ui.isFloorClearOver, ui.isFloorClearFailed)
+                        local result = common.awaitYesNo(ui.isFloorClearOver, ui.isFloorClearFailed, 60 * 1000)
                         if not result then
                             -- 成功则继续
                             -- 失败则退出刷塔（打不过，不打了。o(╥﹏╥)o）
                             toast('打输了,算了，暂时不打了')
                             failed = true
                         end
+                        util.delay()
                         tap(ui.monthTower.continue.x, ui.monthTower.continue.y)
                         util.delay()
                         -- 等待返回试练塔主界面
