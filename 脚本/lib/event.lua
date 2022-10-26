@@ -332,5 +332,17 @@ event.monthTower = function()
     end
 end
 
+-- 领任务奖励(临时，等每日任务能自动做了，这个则没必要了)
+event.getAward = function()
+    toast('领取每日任务奖励')
+    util.delay()
+    -- 领取每日奖励
+    tap(enum.daily.x, enum.daily.y)
+    util.delay()
+    tap(enum.daily_getAll.x, enum.daily_getAll.y)
+    util.delay()
+    tap(enum.daily_close.x, enum.daily_close.y)
+end
+
 return event
 

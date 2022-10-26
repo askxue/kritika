@@ -14,7 +14,6 @@ require "lib.util"
 
 -- 单元测试区域
 
-
 -- end
 
 -- 从UI读取配置
@@ -50,7 +49,7 @@ if ui.isChooseRolePage() then
         end
 
         -- 世界boss
-        if not service.hasDoneBoss() then
+        if tonumber(config.settings.boss) == 0 and not service.hasDoneBoss() then
             event.boss()
         end
 
@@ -73,6 +72,9 @@ if ui.isChooseRolePage() then
         if not service.hasDoneEmail() then
             event.getEmail()
         end
+
+        -- 领每日任务奖励
+        event.getAward()
 
         -- 返回角色选择界面
         toast("返回角色选择界面")

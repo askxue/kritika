@@ -40,7 +40,7 @@ end
 
 -- 是否找到了某些颜色： 指定范围
 common.isFindColorsScoped = function(startX, startY, endX, endY, firstColor, offsetColor)
-    local x, y = findMultiColor(startX, startY, endX, endY, firstColor, offsetColor, 0, 0.9)
+    local x, y = findMultiColor(startX, startY, endX, endY, firstColor, offsetColor, 0, 0.95)
     return x ~= -1 and y ~= -1
 end
 
