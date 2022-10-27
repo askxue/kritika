@@ -95,12 +95,6 @@ ui.monthTower_types = {
 
 
 -- 找色
--- 世界boss战斗结束画面
-ui.bossOver = {
-    firstColor = "14CAF8",
-    offsetColor = "-173|-305|2CFFB2|-236|113|FFFFFF|-71|456|32CEE1"
-}
-
 -- 是否为角色主界面
 ui.isHomePage = function()
     return common.isFindImage(ui.homePage)
@@ -118,7 +112,12 @@ end
 
 -- 是否boss战结束界面
 ui.isBossOver = function()
-    return common.isFindColors(ui.bossOver.firstColor, ui.bossOver.offsetColor)
+    local findColor = common.isFindColorsScoped(data.bossOver.sX, data.bossOver.sY, data.bossOver.eX, data.bossOver.eY, data.bossOver.firstColor, data.bossOver.offsetColor)
+    local findPng = common.isFindImageScoped(data.bossOver.png.sX, data.bossOver.png.sY, data.bossOver.png.eX, data.bossOver.png.eY, data.bossOver.png.name)
+    print('find color', findColor)
+    print('find png', findPng)
+    toast('find color and png ', findColor, findPng)
+    return findColor or findPng
 end
 
 -- 返回选择角色界面

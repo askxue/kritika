@@ -135,6 +135,8 @@ event.boss = function()
         else
             util.delay(65 * 1000)
             common.await(ui.isBossOver)
+            toast('Boss done!')
+            print('Boss done!')
             tap(enum.continue.x, enum.continue.y)
             -- 记录log
             log.write(enum.dailyEvents.boss, currentRole)
@@ -142,6 +144,7 @@ event.boss = function()
     else
         toast('世界Boss结算中')
     end
+    util.delay()
     toast('返回主界面')
     for i = 1, 2 do
         util.delay()

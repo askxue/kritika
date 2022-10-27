@@ -4,10 +4,10 @@ common = {}
 
 -- 找图： 普通 & 高级找图，双重校验
 common.findPicPlus = function(startX, startY, endX, endY, imageName)
-    local ret, x, y = findPic(startX, startY, endX, endY, imageName, "101010", 0, 0.98)
+    local ret, x, y = findPic(startX, startY, endX, endY, imageName, "101010", 0, 0.9)
     if x == -1 and y == -1 then
         -- 没找到图，使用高级查找再次尝试
-        ret, x, y = findPicEx(startX, startY, endX, endY, imageName, 0.98)
+        ret, x, y = findPicEx(startX, startY, endX, endY, imageName, 0.9)
     end
     return ret, x, y
 end
@@ -40,7 +40,7 @@ end
 
 -- 是否找到了某些颜色： 指定范围
 common.isFindColorsScoped = function(startX, startY, endX, endY, firstColor, offsetColor)
-    local x, y = findMultiColor(startX, startY, endX, endY, firstColor, offsetColor, 0, 0.95)
+    local x, y = findMultiColor(startX, startY, endX, endY, firstColor, offsetColor, 0, 0.9)
     return x ~= -1 and y ~= -1
 end
 

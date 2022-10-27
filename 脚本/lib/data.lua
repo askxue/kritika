@@ -24,4 +24,21 @@ data.pve = {
     icon = { x = 393, y = 1044 }
 }
 
+-- 世界boss战斗结束画面
+data.bossOver = {
+    sX = 190,
+    sY = 444,
+    eX = 597,
+    eY = 1026,
+    firstColor = "17D9F3-101010",
+    offsetColor = "2|342|18DCF2-101010|-249|247|FFFFFF-101010|-135|483|82D5E6-101010",
+    png = {
+        sX = 253,
+        sY = 782,
+        eX = 522,
+        eY = 1052,
+        name = "boss战斗结束.png"
+    }
+}
+
 return data

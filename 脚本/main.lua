@@ -3,6 +3,7 @@
 -- 引用其他模块 （统一放到main引入，避免循环引用导致脚本崩溃）
 require "lib.common"
 require "lib.config"
+require "lib.data"
 require "lib.date"
 require "lib.db"
 require "lib.enum"
